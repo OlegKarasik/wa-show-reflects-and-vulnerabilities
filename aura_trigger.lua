@@ -17,40 +17,37 @@ function(allstates, event, unit)
         end
     end
     
-    local env = aura_env
-    
-    local targetGUID = UnitGUID('target')
-    local type, zero, server_id, instance_id, zone_uid, npc_id, spawn_uid = strsplit("-", targetGUID);
-    
-    print('npc_buid:'..targetGUID)
-    
+    local target_GUID = UnitGUID('target')
+    local type, zero, server_id, instance_id, zone_uid, npc_id, spawn_uid = strsplit("-", target_GUID);
     
     npc_id = tonumber(npc_id)
     
-    print('npc:'..npc_id)
-    
-    
-    local effects = env.mobs[npc_id]
+    local effects = aura_env.mobs[npc_id]
     if not effects then 
+        -- Reset all states and disable all effects
         for _, state in pairs(allstates) do
             state.show = false
             state.changed = true
         end
-        
         return true
     end
-    
-    print('testing')
-    
     for _, effect in ipairs(effects) do
-        print('matching:'..effect.id) 
+        local name = WA_GetUnitDebuff('target', effect.aura)
+        if not name then
+            name = WA_GetUnitBuff('target', effect.aura)
+        end
         
-        allstates[effect.id] = {
-            show = true,
+        local state = {
+            show = false,
             changed = true,
             tooltip = effect.tooltip,
             icon = effect.icon
         }
+        if name then 
+            state.show = true
+        end
+        
+        allstates[effect.id] = state
     end
     return true
 end
