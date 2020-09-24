@@ -19,6 +19,11 @@ function(allstates, event, unit)
     
     local target_GUID = UnitGUID('target')
     local type, zero, server_id, instance_id, zone_uid, npc_id, spawn_uid = strsplit("-", target_GUID);
+
+    if not npc_id then
+        -- Some GUID can't be parsed
+        return false
+    end
     
     npc_id = tonumber(npc_id)
     
