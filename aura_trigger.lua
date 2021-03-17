@@ -6,6 +6,13 @@ function(allstates, event, unit)
         return false
     end
 
+    -- Because of the nature of PLAYER_TARGET_CHANGE event which can be triggered 
+    -- instantly (actually it is triggered before init function is called) after entering dungeon or raid (dropping a target)
+    -- we have to handle it here
+    if (not aura_env.mobs) then
+        return false
+    end
+
     if (not UnitExists('target') or not UnitIsEnemy("player", "target") or UnitIsDead('target') or UnitIsPlayer('target')) then
         -- In case we don't have target or target is dead or target is player or friend we just
         -- remove all auras
