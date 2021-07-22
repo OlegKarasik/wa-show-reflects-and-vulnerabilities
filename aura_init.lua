@@ -63,7 +63,7 @@ aura_env.mobs = {
     -- Dragons and Chromaggus
     [12460] = dragons_and_chromaggus_effects,
     [12461] = dragons_and_chromaggus_effects,
-    [14020] = dragons_and_chromaggus_effects
+    [14020] = dragons_and_chromaggus_effects,
     -- Sethekk Initiate
     [18318] = sethekk_initiate_effects
 }
