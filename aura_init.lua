@@ -15,6 +15,8 @@ local effects = {
     ['dc-shadow-vulnerability'] = { id = 'dc-shadow-vulnerability', filter = 'HELPFUL', aura = 22279, icon = 136197 },
     ['dc-fire-vulnerability'] = { id = 'dc-fire-vulnerability', filter = 'HELPFUL', aura = 22277, icon = 135812 },
     ['dc-nature-vulnerability'] = { id = 'dc-nature-vulnerability', filter = 'HELPFUL', aura = 22280, icon = 136048 },
+    --
+    ['spell-reflect'] = { id = 'spell-reflect', filter = 'HELPFUL', aura = 33961, icon = 136222 }
 }
 
 local anubisat_effects = {
@@ -40,6 +42,10 @@ local dragons_and_chromaggus_effects = {
     effects['dc-nature-vulnerability']
 }
 
+local sethekk_initiate_effects = {
+    effects['spell-reflect']
+}
+
 aura_env.mobs = {
     -- Anubistats
     [15277] = anubisat_effects,
@@ -58,4 +64,6 @@ aura_env.mobs = {
     [12460] = dragons_and_chromaggus_effects,
     [12461] = dragons_and_chromaggus_effects,
     [14020] = dragons_and_chromaggus_effects
+    -- Sethekk Initiate
+    [18318] = sethekk_initiate_effects
 }
